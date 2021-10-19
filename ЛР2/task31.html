@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body onload="setMonthsSelect()">
+<div class="container">
+    <form action="" style="margin-top: 20px">
+        <label for="fio">FIO:</label>
+        <p><input id="fio" type="text" placeholder="Иванов Иван Петрович"></p>
+        <label for="birthday">Birthday:</label>
+        <p><input id="birthday" type="text" placeholder="День"></p>
+        <select id="list_month" onchange="getMonths()">
+            <option disabled selected>Выберите месяц</option>
+        </select>
+        <p><input id="birthyear" type="text" placeholder="Год"></p>
+        <select id='langs' onchange="setMonthsSelect()">
+<!--            <option disabled selected>Выберите язык</option>-->
+            <option selected value="rus">Русский</option>
+            <option value="en">Английский</option>
+            <option value="de">Немецкий</option>
+        </select>
+        <p><input type="button" value="Info" onclick="info()"></p>
+    </form>
+</div>
+</body>
+<script>
+    function info() {
+        const fio = document.getElementById('fio').value
+        const day = document.getElementById('birthday').value
+        const monthNode = document.getElementById('list_month')
+        const month = monthNode.options.selectedIndex
+        const year = document.getElementById('birthday').value
+
+        const birthday = `${month}.${day}.${year}`
+        const birth_date = new Date(birthday)
+
+        let locale = getLang()
+
+        const birthday_string = birth_date.toLocaleString(
+            locale,
+            {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            }
+        )
+
+        alert(`Информация:\nФИО: ${fio}\nДата рождения: ${birthday_string}`)
+    }
+
+    function getMonths() {
+        const lang = getLang()
+        let months = []
+        for (let i = 0; i < 12; i++){
+            months.push(new Date(`${i+1}`).toLocaleString(lang, {month: 'long'}))
+        }
+        return months
+    }
+
+    function getLang() {
+        const node = document.getElementById('langs')
+        return node.options[node.options.selectedIndex].value
+    }
+
+    function setMonthsSelect() {
+        let months = getMonths()
+        const node = document.getElementById('list_month')
+        for (let i = 0; i < 12; i++) {
+            node.options[i+1] = new Option(months[i])
+        }
+    }
+
+</script>
+</html>

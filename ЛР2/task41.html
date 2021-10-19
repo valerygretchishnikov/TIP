@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Калькулятор</title>
+</head>
+<body>
+<!-- поле ввода первого числа -->
+<input id="num1" />
+
+<!-- блок с кнопками -->
+<div id="operator_btns">
+    <button id="plus" onclick="op='+'">+</button>
+    <button id="minus" onclick="op='-'">-</button>
+    <button id="times" onclick="op='*'">x</button>
+    <button id="divide" onclick="op='/'">:</button>
+</div>
+
+<!-- поле ввода второго числа -->
+<input id="num2" />
+<br>
+
+<!-- кнопка для расчётов -->
+<button onclick="func()">Вычислить</button>
+
+<!-- здесь будет результат -->
+<p id="result"></p>
+
+<!-- наш скрипт -->
+<script>
+    // переменная, в которой хранится выбранное математическое действие
+    let op;
+
+    function preobraz(number) {
+        let [prefix, postfix] = number.split(/[0-9]+/)
+        let number_value = Number(RegExp('[0-9]+').exec(number)[0])
+
+        let n = prefix.length;
+
+        if (n % 2 === 1)
+            number_value = -number_value
+
+        if (postfix === '++')
+            number_value = number_value + 1
+        if (postfix === '--')
+            number_value = number_value - 1
+
+        return number_value
+    }
+
+    // функция расчёта
+    function func() {
+        // переменная для результата
+        var result;
+        // получаем первое и второе число
+
+        let num1 = preobraz(document.getElementById("num1").value)
+        let num2 = preobraz(document.getElementById("num2").value)
+        // смотрим, что было в переменной с действием, и действуем исходя из этого
+        switch (op) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num1 / num2;
+                break;
+        }
+
+        // отправляем результат на страницу
+        document.getElementById("result").innerHTML = result;
+    }
+</script>
+
+</body>
+</html>

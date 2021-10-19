@@ -1,0 +1,132 @@
+body{
+    padding:0;
+    margin: 0;
+    font-family: Gilroy;
+    font-size: 16px;
+    overflow: scroll; /*Полосы прокрутки*/
+}
+
+h1,h2,h3,h4,h5,h6{
+    padding:0;
+    margin: 0;
+}
+
+.container {
+    width: 1170px;
+    margin: 0 auto; /*Center position*/
+}
+
+header a{
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 40px;
+}
+
+.nav{
+    margin-top: 45px;
+}
+
+.offer{
+    margin-top: 180px;
+}
+
+.offer p{
+    font-size: 20px;
+}
+
+.offer h1{
+    font-size: 55px;
+    margin-bottom: 30px;
+}
+
+.footsent{
+    margin-top: 205px;
+    margin-bottom: 45px;
+}
+
+.gallery{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+h2{
+    font-size: 35px;
+    margin-top: 60px;
+}
+
+.open_image:hover{
+    box-shadow: 0 0 20px grey;
+}
+
+.lists{
+    margin-top: 30px;
+}
+
+.nested_list{
+    margin-top: 30px;
+}
+
+.nested_list a{
+    color: blue;
+}
+
+.facts{
+    margin-top: 30px;
+}
+
+.article{
+    width: 1170px;
+    height: 400px;
+}
+
+.prices_table{
+    margin-top: 30px;
+}
+
+textarea{
+    width: 500px;
+    height: 200px;
+}
+
+.info_about{
+    margin-top: 30px;
+}
+
+.p1{
+    list-style-image:url("img/1.png");
+}
+
+.p2{
+    list-style-image:url("img/2.png");
+}
+
+.p3{
+    list-style-image:url("img/3.png");
+}
+
+.p4{
+    list-style-image:url("img/4.png");
+}
+
+.p5{
+    list-style-image:url("img/5.png");
+}
+
+.p6{
+    list-style-image:url("img/6.png");
+}
+
+.p7{
+    list-style-image:url("img/7.png");
+}
+
+.p8{
+    list-style-image:url("img/8.png");
+}
+
+.pages_description a{
+    color: blue;
+}
+
