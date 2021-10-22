@@ -27,16 +27,12 @@
 </div>
 </body>
 <script>
-    function testForGitHub() {
-
-    }
-
     function info() {
         const fio = document.getElementById('fio').value
         const day = document.getElementById('birthday').value
         const monthNode = document.getElementById('list_month')
         const month = monthNode.options.selectedIndex
-        const year = document.getElementById('birthday').value //Почему здесь не birthyear?
+        const year = document.getElementById('birthyear').value
 
         const birthday = `${month}.${day}.${year}`
         const birth_date = new Date(birthday)
