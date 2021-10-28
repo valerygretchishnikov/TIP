@@ -10,6 +10,30 @@
             var a=d.forms["form1"].num.value;
             var s;
             var r="  ";
+            if (((d.forms["form1"].elements[2])[1]).selected)
+            {
+                a*=100
+            }
+            if (((d.forms["form1"].elements[5])[2]).selected)
+            {
+                a*=1000
+            }
+            if (((d.forms["form1"].elements[5])[3]).selected)
+            {
+                a*=39.37
+            }
+            if (((d.forms["form1"].elements[5])[1]).selected)
+            {
+                a*=100
+            }
+            if (((d.forms["form1"].elements[5])[2]).selected)
+            {
+                a*=1000
+            }
+            if (((d.forms["form1"].elements[5])[3]).selected)
+            {
+                a*=39.37
+            }
             if (((d.forms["form1"].elements[0])[0]).selected)
             {r=r+((d.forms["form1"].elements[0])[0]).text;
                 s=a*a*3.14;
@@ -25,18 +49,6 @@
             if (((d.forms["form1"].elements[0])[3]).selected)
             {r=r+((d.forms["form1"].elements[0])[3]).text;
                 s=Math.sqrt(3)*a*a/4;
-            }
-            if (((d.forms["form1"].elements[2])[1]).selected)
-            {
-                a*=100
-            }
-            if (((d.forms["form1"].elements[2])[2]).selected)
-            {
-                a*=1000
-            }
-            if (((d.forms["form1"].elements[2])[3]).selected)
-            {
-                a*=39.37
             }
             d.forms["form1"]["res"].value=s;
             d.forms["form1"]["fig"].value=r;
@@ -68,6 +80,13 @@
         <tr>
             <td>
                 Фигура: <input type="text" name="fig" size=65>&nbsp;&nbsp;&nbsp;
+                Выберите единицу измерения площади:
+                <select name="list3" size=1>
+                    <option value=0 selected>метр^2
+                    <option value=1>сантиметр^2
+                    <option value=2>миллиметр^2
+                    <option value=3>дюймы^2
+                </select>&nbsp;&nbsp;&nbsp;
                 Площадь: <input type="text" name="res" size=14><br>
                 <input type="reset" value="Обновить">
             </td>
