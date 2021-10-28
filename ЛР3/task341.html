@@ -4,54 +4,127 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script language="JavaScript">
+        function circle_square(radius){
+            return radius * radius * 3.14
+        }
+
+        function box_square(x){
+            return x * x
+        }
+
+        function ravn_triangle_square(x){
+            return Math.sqrt(3) * x * x / 4
+        }
+
+        function triangle_square(x){
+            return x * x / 2
+        }
+
+        function perevod(a, param, square){
+            if (param === 0)
+            {
+                switch (square) {
+                    case 1:
+                        a *= 100
+                        break
+                    case 2:
+                        a *= 1000
+                        break
+                    case 3:
+                        a *= 39.37
+                        break
+                }
+                return a
+            }
+
+
+            if (param === 1)
+            {
+                switch (square) {
+                    case 0:
+                        a /= 100
+                        break
+                    case 2:
+                        a *= 10
+                        break
+                    case 3:
+                        a /= 100
+                        a *= 39.37
+                        break
+                }
+                return a
+            }
+
+            if (param === 2)
+            {
+                switch (square) {
+                    case 0:
+                        a /= 1000
+                        break
+                    case 1:
+                        a /= 10
+                        break
+                    case 3:
+                        a /= 1000
+                        a *= 39.37
+                        break
+                }
+                return a
+            }
+
+            if (param === 3)
+            {
+                switch (square) {
+                    case 0:
+                        a /= 39.37
+                        break
+                    case 1:
+                        a /= 39.37
+                        a *= 100
+                        break
+                    case 2:
+                        a /= 39.37
+                        a *= 1000
+                        break
+                }
+                return a
+            }
+        }
+
         function testsel()
         {
-            var d=document;
-            var a=d.forms["form1"].num.value;
-            var s;
-            var r="  ";
-            if (((d.forms["form1"].elements[2])[1]).selected)
-            {
-                a*=100
+            const form = document.forms["form1"];
+
+            let fig_index = form["figures_list"].selectedIndex
+            let r = ((form["figures_list"])[fig_index]).text
+
+            let a = form["num"].value
+            let ed_izm_param = form["ed_izm_list"].selectedIndex
+            let ed_izm_square = form["squares_list"].selectedIndex
+
+            if (ed_izm_param !== ed_izm_square) {
+                a = perevod(a, ed_izm_param, ed_izm_square)
             }
-            if (((d.forms["form1"].elements[5])[2]).selected)
-            {
-                a*=1000
+
+            let s;
+            switch (fig_index) {
+                case 0:
+                    s = circle_square(a)
+                    break
+                case 1:
+                    s = box_square(a)
+                    break
+                case 2:
+                    s = triangle_square(a)
+                    break
+                case 3:
+                    s = ravn_triangle_square(a)
+                    break
+
             }
-            if (((d.forms["form1"].elements[5])[3]).selected)
-            {
-                a*=39.37
-            }
-            if (((d.forms["form1"].elements[5])[1]).selected)
-            {
-                a*=100
-            }
-            if (((d.forms["form1"].elements[5])[2]).selected)
-            {
-                a*=1000
-            }
-            if (((d.forms["form1"].elements[5])[3]).selected)
-            {
-                a*=39.37
-            }
-            if (((d.forms["form1"].elements[0])[0]).selected)
-            {r=r+((d.forms["form1"].elements[0])[0]).text;
-                s=a*a*3.14;
-            }
-            if (((d.forms["form1"].elements[0])[1]).selected)
-            {r=r+((d.forms["form1"].elements[0])[1]).text;
-                s=a*a;
-            }
-            if (((d.forms["form1"].elements[0])[2]).selected)
-            {r=r+((d.forms["form1"].elements[0])[2]).text;
-                s=a*a/2;
-            }
-            if (((d.forms["form1"].elements[0])[3]).selected)
-            {r=r+((d.forms["form1"].elements[0])[3]).text;
-                s=Math.sqrt(3)*a*a/4;
-            }
-            d.forms["form1"]["res"].value=s;
-            d.forms["form1"]["fig"].value=r;
+
+            form["res"].value = s;
+            form["fig"].value = r;
         }
     </script>
 </head>
@@ -59,7 +132,7 @@
     <table border=5><FORM name="form1">
         <tr>
             <td>Выберите фигуру:
-                <select name="list1" size=1>
+                <select name="figures_list" size=1>
                     <option value=0>круг
                     <option value=1>квадрат
                     <option value=2>треугольник (прямоугольный, равнобедренный)
@@ -68,7 +141,7 @@
                 Введите параметр (радиус, сторону, высоту):
                 <input  type="text" size=5 name="num">
                 Единица измерения
-                <select name="list2" size=1>
+                <select name="ed_izm_list" size=1>
                     <option value=0 selected>метр
                     <option value=1>сантиметр
                     <option value=2>миллиметр
@@ -81,7 +154,7 @@
             <td>
                 Фигура: <input type="text" name="fig" size=65>&nbsp;&nbsp;&nbsp;
                 Выберите единицу измерения площади:
-                <select name="list3" size=1>
+                <select name="squares_list" size=1>
                     <option value=0 selected>метр^2
                     <option value=1>сантиметр^2
                     <option value=2>миллиметр^2
