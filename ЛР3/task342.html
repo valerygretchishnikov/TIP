@@ -6,27 +6,46 @@
   <script language="JavaScript1.2" src="../lib/stat_pvn.js"></script>
   <script language="JavaScript1.2">
     function income(ob_frm) {
-      var x1 = new Array();
-      for (var i=0; i<ob_frm.elements.length-3; i++) {x1[i] = 1.0*ob_frm.elements[i].value}
-      inc_mean = Math.round (mean(x1)*1000)/1000;
-      inc_max = Math.round (max_arr(x1)*1000)/1000;
-      inc_min = Math.round (min_arr(x1)*1000)/1000;
+      let x1 = [];
+      for (let i = 0; i < 12; i++) {
+          x1[i] = 1.0 * ob_frm.elements[i].value
+      }
+      let inc_mean = Math.round(mean(x1)*1000) / 1000;
+      let inc_max = Math.round(max_arr(x1)*1000) / 1000;
+      let inc_min = Math.round(min_arr(x1)*1000) / 1000;
       ob_frm.result.value = inc_mean;
       ob_frm.res_max.value = inc_max;
       ob_frm.res_min.value = inc_min;
-      Max = new array()
-      for(let i = 0; i<x1.length; i++){
-        if(x1[i]>Max){
-          Max = x1[i]
-        }
-      }
-      Min = new array()
-      for(let i = 0; i<x1.length; i++){
-        if(x1[i]<Min){
-          Min = x1[i]
-        }
-      }
+
+      const indexes_of_max_elem = get_indexes_of_elem(x1, inc_max)
+      const indexes_of_min_elem = get_indexes_of_elem(x1, inc_min)
+
+      const months_of_max_elem = getMonths(indexes_of_max_elem)
+      const months_of_min_elem = getMonths(indexes_of_min_elem)
+
+      document.getElementById("months_max").innerHTML = "(" + months_of_max_elem + ")";
+      document.getElementById("months_min").innerHTML = "(" + months_of_min_elem + ")";
     }
+
+    function getMonths(arr) {
+        let months = []
+        for (let i of arr){
+            i = Number(i) + 1
+            months.push(new Date(i.toString()).toLocaleString('ru', {month: 'long'}))
+        }
+        return months
+    }
+
+    function get_indexes_of_elem(arr, elem) {
+        const indexes_of_elem = []
+        for (let i in arr) {
+            if (arr[i] === elem) {
+                indexes_of_elem.push(i)
+            }
+        }
+        return indexes_of_elem
+    }
+
   </script>
 </head>
 <body bgcolor=f8f8ff>
@@ -49,11 +68,12 @@
   Средний доход за
   <script>document.write(form1.elements.length)</script> месяцев:
   <input  type="text" size=8 name="result">
-  Максимальное значение за
-  <input  type="text" size=8 name="res_max">
-  Минимальное значение за
-  <input  type="text" size=8 name="res_min">
-  <br><br>
+  <p>
+    Максимальное значение <span id="months_max"></span> <input  type="text" size=8 name="res_max">
+  </p>
+  <p>
+    Минимальное значение <span id="months_min"></span> <input  type="text" size=8 name="res_min">
+  </p>
   <input type="button" value="Вычислить"
          onClick="income(form1)">&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="reset" value="Обновить">
