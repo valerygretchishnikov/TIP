@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script language="JavaScript">
+        dateVar = new Date();
+        day_per_ms = 1;
+        seven_day_per_ms = 7 * day_per_ms;
+        today_ms = dateVar.getDate();
+        today_ms += seven_day_per_ms;
+        dateVar.setDate(today_ms);
+        seven_day = dateVar.toLocaleString();
+        alert("Дата через "+seven_day_per_ms/day_per_ms+
+            " дней от текущей даты :-) : " + seven_day);
+    </script>
+</head>
+<body></body>
+</html>

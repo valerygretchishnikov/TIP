@@ -12,7 +12,7 @@
         <p><input id="fio" type="text" placeholder="Иванов Иван Петрович"></p>
         <label for="birthday">Birthday:</label>
         <p><input id="birthday" type="text" placeholder="День"></p>
-        <select id="list_month" onchange="getMonths()">
+        <select id="list_month" >
             <option disabled selected>Выберите месяц</option>
         </select>
         <p><input id="birthyear" type="text" placeholder="Год"></p>
@@ -54,15 +54,16 @@
     function getMonths() {
         const lang = getLang()
         let months = []
-        for (let i = 0; i < 12; i++){
-            months.push(new Date(`${i+1}`).toLocaleString(lang, {month: 'long'}))
+        for (let i = 1; i <= 12; i++){
+            months.push(new Date(`${i}`).toLocaleString(lang, {month: 'long'}))
         }
         return months
     }
 
     function getLang() {
         const node = document.getElementById('langs')
-        return node.options[node.options.selectedIndex].value
+        let lang_index = node.options.selectedIndex
+        return node.options[lang_index].value
     }
 
     function setMonthsSelect() {
