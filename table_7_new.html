@@ -125,17 +125,23 @@
         </TABLE>
         <br>
         <form class="table_form">
-            <p><textarea placeholder="Ваше сообщение"></textarea></p>
+            <p>Проверьте ваши знания</p>
+            <p>Часы золото+бриллиант проивзодятся в странах</p>
+            <p><input class="q" name="a" type="checkbox" value="r" checked> Швейцария</p>
+            <p><input class="q" name="a" type="checkbox" value="r" checked> Россия</p>
+            <p><input class="q" name="a" type="checkbox" value="" > Германия</p>
+            <p><input class="q" name="a" type="checkbox" value=""> Марокко</p>
             <br>
-            <p><input name="a" type="checkbox" value="1417"> Золото</p>
-            <p><input name="a" type="checkbox" value="1680" checked> Серебро</p>
-            <p><input name="a" type="checkbox" value="1883" checked> Бриллиант</p>
-            <p><input name="a" type="checkbox" value="1934"> Изумруд</p>
+            <p>Какие категории товаров есть у нас</p>
+            <p><input class="q" name="b" type="checkbox" value="r" checked> Часы</p>
+            <p><input class="q" name="b" type="checkbox" value="r" checked> Браслеты</p>
+            <p><input class="q" name="b" type="checkbox" value="" > Ожерелья</p>
             <br>
-            <p><input name="b" type="radio" value="watch"> Часы</p>
-            <p><input name="b" type="radio" value="earrings"> Серьги</p>
-            <p><input name="b" type="radio" value="ring" checked> Кольца</p>
-            <p><input name="b" type="radio" value="bracelets"> Браслеты</p>
+            <p><input type="button" value="Проверить" onclick="proverka()"></p>
+<!--            <p><input name="c" type="radio" value="watch"> Часы</p>-->
+<!--            <p><input name="c" type="radio" value="earrings"> Серьги</p>-->
+<!--            <p><input name="c" type="radio" value="ring" checked> Кольца</p>-->
+<!--            <p><input name="c" type="radio" value="bracelets"> Браслеты</p>-->
         </form>
     </div>
 </section>
@@ -149,4 +155,31 @@
     </div>
 </footer>
 </body>
+<script>
+    function proverka() {
+        const elements = document.getElementsByClassName('q')
+        let cor = 0, vsego_cor = 0, lishnix = 0
+        for (let elem of elements) {
+            if (elem.value === "r") {
+                vsego_cor++
+            }
+            if (elem.checked === true) {
+                if (elem.value === "r") {
+                    cor++
+                }
+                else {
+                    lishnix++
+                }
+            }
+        }
+        let res = cor-lishnix
+        if (res < 0) {
+            res = 0
+        }
+        alert("Вы дали " + cor + " правильных ответов");
+        alert("Ваш результат: " + res/vsego_cor * 100 + "%");
+    }
+
+    // 2/4 + 2/3
+</script>
 </html>
