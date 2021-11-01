@@ -34,6 +34,23 @@
         const month = monthNode.options.selectedIndex
         const year = document.getElementById('birthyear').value
 
+        if (fio === null) {
+            alert("Введите ФИО")
+            return
+        }
+        if (month === 0) {
+            alert("Выберите месяц")
+            return
+        }
+        if (day === null || day < 1 || day > 31 || !Number.isInteger(Number(day))) {
+            alert("Не корректно введен день")
+            return
+        }
+        if (year === '' || year < 0 || !Number.isInteger(Number(year))) {
+            alert("Не корректно введен год")
+            return
+        }
+
         const birthday = `${month}.${day}.${year}`
         const birth_date = new Date(birthday)
 
