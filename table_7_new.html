@@ -158,22 +158,22 @@
 </body>
 <script>
     function sum() {
-        let tovar = prompt('Введите товар')
-        if (!['часы', 'кольца', 'браслеты', 'серьги'].includes(tovar.toLowerCase())) {
+        let item = prompt('Введите товар')
+        if (!['часы', 'кольца', 'браслеты', 'серьги'].includes(item.toLowerCase())) {
             alert('Нет такого товара')
             return
         }
-        let strana = prompt('Введите страну')
-        if (!['швейцария', 'греция', 'испания', 'россия'].includes(strana.toLowerCase())) {
+        let country = prompt('Введите страну')
+        if (!['швейцария', 'греция', 'испания', 'россия'].includes(country.toLowerCase())) {
             alert('Нет такой страны')
-            alert(strana)
+            alert(country)
             return
         }
 
         const trs = document.getElementsByTagName('tr')
         let tr_strana = null
         for (let tr of trs) {
-            if (tr.getAttribute('value') === strana) {
+            if (tr.getAttribute('value') === country) {
                 tr_strana = tr
             }
         }
@@ -181,7 +181,7 @@
         const tds = tr_strana.getElementsByTagName('td')
         let sum = 0
         for (let td of tds) {
-            if (td.getAttribute('value') === tovar) {
+            if (td.getAttribute('value') === item) {
                 sum += Number(td.innerText)
             }
         }
