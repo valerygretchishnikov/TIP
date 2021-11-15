@@ -23,19 +23,26 @@
             <option value="de">Немецкий</option>
         </select>
         <p><input type="button" value="Info" onclick="info()"></p>
+        <p><input type="button" value="Days from birhday" onclick="daysFromBirthday()"></p>
     </form>
 </div>
 </body>
 <script>
+    function daysFromBirthday() {
+        const month = document.getElementById('list_month').options.selectedIndex
+        const year = document.getElementById('birthyear').value
+        const day = document.getElementById('birthday').value
+
+        const birthday = `${month}.${day}.${year}`
+        const birth_date = new Date(birthday)
+        const days = parseInt((new Date() - birth_date)/(1000*60*60*24))
+        alert(`Days from birth: ${days}`)
+    }
+
     function info() {
         const fio = document.getElementById('fio').value
-
         const month = document.getElementById('list_month').options.selectedIndex
-
         const year = document.getElementById('birthyear').value
-
-        let max_days_in_month = new Date(year, month, 0).toLocaleString('default', {day: 'numeric'})
-
         const day = document.getElementById('birthday').value
 
         const birthday = `${month}.${day}.${year}`
