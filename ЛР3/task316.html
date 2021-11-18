@@ -5,12 +5,12 @@
     <title>Title</title>
   <script language="JavaScript">
     var myarray = new Array("","","","","");
-    var y=-1, ys="", extent1=".gif", extent2=".jpg\"";  //вставьте в extent2 расширение для формата JPEG
+    var y=-1, ys="", extent1=".gif", extent2=".jpg";  //вставьте в extent2 расширение для формата JPEG
     for (x in myarray)
     {
       y++;
       ys=y;
-      myarray[x] = "\n<a src=\"image1/img" + x +extent2+ ">рис."+ys+"</a>";
+      myarray[x] = "\n<a src=\"image1/img" + x + extent2+ '\"' + ">рис." + ys + "</a>";
     }
     alert("Ссылки на мои картинки jpg-формата:"+myarray);
     if (extent2 != ".jpg") {alert("Если это задание 356, то Вы, забыли про фото в формате jpeg");}
