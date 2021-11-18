@@ -124,26 +124,26 @@
             </tr>
         </TABLE>
         <br>
-        <button onclick="sum()">Посчитать сумму</button>
-        <!--        <form class="table_form">-->
-        <!--            <p>Проверьте ваши знания</p>-->
-        <!--            <p>Часы золото+бриллиант проивзодятся в странах</p>-->
-        <!--            <p><input class="q" name="a" type="checkbox" value="r" checked> Швейцария</p>-->
-        <!--            <p><input class="q" name="a" type="checkbox" value="r" checked> Россия</p>-->
-        <!--            <p><input class="q" name="a" type="checkbox" value="" > Германия</p>-->
-        <!--            <p><input class="q" name="a" type="checkbox" value=""> Марокко</p>-->
-        <!--            <br>-->
-        <!--            <p>Какие категории товаров есть у нас</p>-->
-        <!--            <p><input class="q" name="b" type="checkbox" value="r" checked> Часы</p>-->
-        <!--            <p><input class="q" name="b" type="checkbox" value="r" checked> Браслеты</p>-->
-        <!--            <p><input class="q" name="b" type="checkbox" value="" > Ожерелья</p>-->
-        <!--            <br>-->
-        <!--            <p><input type="button" value="Проверить" onclick="proverka()"></p>-->
-        <!--&lt;!&ndash;            <p><input name="c" type="radio" value="watch"> Часы</p>&ndash;&gt;-->
-        <!--&lt;!&ndash;            <p><input name="c" type="radio" value="earrings"> Серьги</p>&ndash;&gt;-->
-        <!--&lt;!&ndash;            <p><input name="c" type="radio" value="ring" checked> Кольца</p>&ndash;&gt;-->
-        <!--&lt;!&ndash;            <p><input name="c" type="radio" value="bracelets"> Браслеты</p>&ndash;&gt;-->
-        <!--        </form>-->
+<!--        <button onclick="sum()">Посчитать сумму</button>-->
+                <form class="table_form">
+                    <p>Проверьте ваши знания</p>
+                    <p>Часы золото+бриллиант проивзодятся в странах</p>
+                    <p><input class="q" name="a" type="checkbox" value="r" checked> Швейцария</p>
+                    <p><input class="q" name="a" type="checkbox" value="r" checked> Россия</p>
+                    <p><input class="q" name="a" type="checkbox" value="" > Германия</p>
+                    <p><input class="q" name="a" type="checkbox" value=""> Марокко</p>
+                    <br>
+                    <p>Какие категории товаров есть у нас</p>
+                    <p><input class="q" name="b" type="checkbox" value="r" checked> Часы</p>
+                    <p><input class="q" name="b" type="checkbox" value="r" checked> Браслеты</p>
+                    <p><input class="q" name="b" type="checkbox" value="" > Ожерелья</p>
+                    <br>
+<!--                    <p><input type="button" value="Проверить" onclick="proverka()"></p>-->
+<!--&lt;!&ndash;                    <p><input name="c" type="radio" value="watch"> Часы</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p><input name="c" type="radio" value="earrings"> Серьги</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p><input name="c" type="radio" value="ring" checked> Кольца</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p><input name="c" type="radio" value="bracelets"> Браслеты</p>&ndash;&gt;-->
+                </form>
     </div>
 </section>
 <footer class="footer">
@@ -157,37 +157,37 @@
 </footer>
 </body>
 <script>
-    function sum() {
-        let tovar = prompt('Введите товар')
-        if (!['часы', 'кольца', 'браслеты', 'серьги'].includes(tovar.toLowerCase())) {
-            alert('Нет такого товара')
-            return
-        }
-        let strana = prompt('Введите страну')
-        if (!['швейцария', 'греция', 'испания', 'россия'].includes(strana.toLowerCase())) {
-            alert('Нет такой страны')
-            alert(strana)
-            return
-        }
-
-        const trs = document.getElementsByTagName('tr')
-        let tr_strana = null
-        for (let tr of trs) {
-            if (tr.getAttribute('value') === strana) {
-                tr_strana = tr
-            }
-        }
-
-        const tds = tr_strana.getElementsByTagName('td')
-        let sum = 0
-        for (let td of tds) {
-            if (td.getAttribute('value') === tovar) {
-                sum += Number(td.innerText)
-            }
-        }
-
-        alert(sum)
-    }
+    // function sum() {
+    //     let tovar = prompt('Введите товар')
+    //     if (!['часы', 'кольца', 'браслеты', 'серьги'].includes(tovar.toLowerCase())) {
+    //         alert('Нет такого товара')
+    //         return
+    //     }
+    //     let strana = prompt('Введите страну')
+    //     if (!['швейцария', 'греция', 'испания', 'россия'].includes(strana.toLowerCase())) {
+    //         alert('Нет такой страны')
+    //         alert(strana)
+    //         return
+    //     }
+    //
+    //     const trs = document.getElementsByTagName('tr')
+    //     let tr_strana = null
+    //     for (let tr of trs) {
+    //         if (tr.getAttribute('value') === strana) {
+    //             tr_strana = tr
+    //         }
+    //     }
+    //
+    //     const tds = tr_strana.getElementsByTagName('td')
+    //     let sum = 0
+    //     for (let td of tds) {
+    //         if (td.getAttribute('value') === tovar) {
+    //             sum += Number(td.innerText)
+    //         }
+    //     }
+    //
+    //     alert(sum)
+    // }
 
     // function proverka() {
     //     const elements = document.getElementsByClassName('q')

@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <TITLE>Фреймы-слайды</TITLE>
+    <SCRIPT LANGUAGE="JavaScript">
+        var defSize = 25;
+        function display(f) {
+            var newRows = "";
+            // Определение местоположения первого фрейма в коллекции all
+            var elFrame = document.all.tags("FRAME");
+            for (var intFrames = 0; intFrames < frames.length;
+                 intFrames++) {
+                var curF = frames[intFrames].document;
+                if (curF.body == f.document.body) {
+                    // Предоставление всего пространства выделенному фрейму
+                    newRows += "*, ";
+                    /* Увеличение заголовка */
+                    curF.all.header.style.fontSize = "200%";
+                    /* Включение полос прокрутки в активном фрейме
+                         путём доступа к элементу FRAME.  */
+                    elFrame[intFrames].scrolling = "yes";
+                }
+                else {
+                    // Установка размера по умолчанию
+                    newRows += defSize.toString() + ", ";
+                    // Сброс изменений размера и шрифта заголовка
+                    curF.all.header.style.fontSize = "";
+                    // Отключение прокручивания
+                    document.all[startIndex+intFrames].scrolling="no"
+                }
+            }
+            document.body.rows = newRows;
+        }
+    </SCRIPT>
+</HEAD>
+<FRAMESET ROWS="*, 25, 25">
+    <FRAME SRC="home.html" NORESIZE>
+    <FRAME SRC="news.html" NORESIZE SCROLLING="No">
+    <FRAME SRC="info.html" NORESIZE SCROLLING="No">
+</FRAMESET>
+</HTML>

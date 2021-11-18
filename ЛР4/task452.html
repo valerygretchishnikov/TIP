@@ -1,0 +1,28 @@
+<HTML>
+<meta charset="UTF-8">
+<HEAD><TITLE>Применение фильтра flipV()</TITLE></HEAD>
+<BODY ><H3 >Эффект применения фильтра flipH().</H3>
+<IMG ID=ImageLogo1 SRC="..\img\earrings.jpg"
+     style="filter:flipv();">
+<IMG ID=ImageLogo2 SRC="..\img\watch.jpg"
+     style="filter:flipv();">
+</BODY>
+</HTML>
+
+<HTML>
+<HEAD><TITLE>Применение фильтров light() и invert()</TITLE>
+    <script>
+        function tstFilter1()
+        {
+            ImageLogo3.filters.light.addCone
+            (10,256,0,255,255,255,10)
+        }
+    </script>
+</HEAD>
+<BODY  onLoad="tstFilter1()">
+<H3 >Применение фильтров light() и invert().</H3>
+<IMG ID=ImageLogo3 SRC="..\img\earrings.jpg"
+     style="filter:light();">
+<IMG SRC="..\img\watch.jpg" style="filter:invert();">
+</BODY>
+</HTML>

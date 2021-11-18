@@ -1,0 +1,33 @@
+<HTML>
+<meta charset="UTF-8">
+<HEAD>
+    <TITLE>Визуальные эффекты перехода  revealtrans()</TITLE>
+    <script>
+        function light_logo(ii, jj)
+//проявление картинки для данного типа перехода
+        {
+            ii=Number(ii);
+            ImageLogo.filters.revealtrans.Apply();
+            ImageLogo.filters.revealtrans.transition=ii;
+            ImageLogo.filters.revealtrans.duration=jj;
+            ImageLogo.style.visibility="visible";
+            ImageLogo.filters.revealtrans.play();
+        }
+    </script>
+</HEAD>
+<BODY ><H3 >Эффекты перехода  revealtrans().</H3>
+<IMG ID=ImageLogo SRC="..\img\earrings.jpg"
+     style="filter:revealtrans();
+          LEFT:50px; TOP:38px;POSITION:absolute;"><br><br><br><br><br><br><br><br><br><br><br><br>
+<form name="frm" >
+   <b>Эффект:</b>
+    <input name="trns" TYPE="text" value=15 size=3><b>
+    Продолжительность:
+    <input name="drs" TYPE="text" value=5 size=3><b></b>
+    Введите тип: 0...23</b>
+    <input type="button" value="<--- Применить"
+           onClick='ImageLogo.style.visibility="hidden";
+light_logo(frm.trns.value, frm.drs.value);' >
+</form>
+</BODY>
+</HTML>
