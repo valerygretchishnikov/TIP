@@ -20,6 +20,7 @@
             var time = new Date();
             var ampm = "     AM";
             var h = time.getHours();
+            var mls = time.getMilliseconds().toString().substr(0,1);
             // Устанавливается время и индикатор времени суток
             // (до/после полудня - am/pm).
             if (h > 12) {
@@ -27,7 +28,7 @@
                 ampm = "   PM";
             }
             return lead0(h) + ":" + lead0(time.getMinutes()) + ":" +
-                lead0(time.getSeconds()) + "." + time.getMilliseconds().toPrecision(1)[0] +  ampm;
+                lead0(time.getSeconds()) + "." + mls +  ampm;
         }
         function tick() {
             // Обновление значения на часах на текущее.
