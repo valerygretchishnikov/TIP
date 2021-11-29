@@ -32,16 +32,16 @@
     }
 
     function succLine() {
-        sp1 = 1;
-        line_left -= sp1;
-        if (line_left < 24) line_left = 700;
+        sp1 = 1
+        line_left -= sp1
+        if (line_left < 24) line_left = 700
 
-        let rad = line_angle * Math.PI/180
+        // let rad = line_angle * Math.PI/180
         //  вычисление координаты следующего положения изображения
         l1.style.left = line_left
-        l1.style.top = (line_top - radius * Math.sin(rad)).toString()
-        line_angle += 1
-        if (line_angle >= 360) line_angle = 0
+        // l1.style.top = (line_top - radius * Math.sin(rad)).toString()
+        // line_angle += 1
+        // if (line_angle >= 360) line_angle = 0
         // l1.style.left = p1
         timerLine = setTimeout("succLine()", 200)
         if (Line === true) stoppedLine()
@@ -87,12 +87,12 @@
 </center>
 <table width=878 height=185 border=4 bgcolor="black" bordercolor="silver">
 <tr><td>
-<div  id="l1" style="position:absolute; left:700px; background:gold; width:178px; height:176px; top:101px;">
-<img src="image1/img0.jpg" name="mycenter";
- style="position:absolute; left:80px; top: 80px; width:40px; height:15px">
-<img src="image1/img1.jpg" name="myimage";
- style="position:absolute; left:80px; top:130px; width:42px; height:23px">
-</div>
+    <div id="l1" style="position:absolute; left:700px; width:178px; height:176px; top:101px;">
+        <img src="image1/sun.png" name="mycenter";
+         style="position:absolute; left:80px; top: 80px; width:40px; height:40px">
+        <img src="image1/moon.png" name="myimage";
+        style="position:absolute; left:80px; top:130px; width:42px; height:30px">
+    </div>
 </td></tr>
 </table>
 </body>
