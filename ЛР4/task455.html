@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/task4_5_5.css" />
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <input type="file" id="inputFile" onchange="showFile(this)" />
+    <div id="fileContent"></div>
+</div>
+</body>
+</html>
+
+<script>
+    function showFile(input) {
+        let file = input.files[0];
+        let reader = new FileReader();
+        let productCodes = new Array();
+        let productNames = new Array();
+        let productPrices = new Array();
+        let productFiles = new Array();
+
+        reader.readAsText(file);
+
+        reader.onload = function () {
+            let rows = reader.result.split("\n");
+            rows.forEach((element) => {
+                let splitedString = element.split("#");
+                productCodes.push(splitedString[0]);
+                productNames.push(splitedString[1]);
+                productPrices.push(splitedString[2]);
+                productFiles.push(splitedString[3]);
+            });
+
+            let html = new Array();
+
+            for (let i = 0; i < productNames.length; i++) {
+                html.push(
+                    `<a href="${productFiles[i]}">${productNames[i]}</a>`
+                );
+            }
+            html.join("");
+
+            document.getElementById("fileContent").innerHTML = html;
+        };
+    }
+</script>
