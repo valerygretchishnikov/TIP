@@ -120,7 +120,11 @@
                 case 3:
                     s = ravn_triangle_square(a)
                     break
+            }
 
+            if (fig_index === 4) {
+                alert(`Объем цилиндра равен: ${Math.PI*a*a*a}`)
+                return
             }
 
             form["res"].value = s;
@@ -137,6 +141,7 @@
                     <option value=1>квадрат
                     <option value=2>треугольник (прямоугольный, равнобедренный)
                     <option value=3>равносторонний треугольник
+                    <option value=4>цилиндр
                 </select>&nbsp;&nbsp;&nbsp;
                 Введите параметр (радиус, сторону, высоту):
                 <input  type="text" size=5 name="num">

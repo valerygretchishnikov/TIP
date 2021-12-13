@@ -43,9 +43,12 @@
                     `<a href="${productFiles[i]}">${productNames[i]}</a>`
                 );
             }
-            html.join("");
+            alert(`${productNames.length} товара`)
 
-            document.getElementById("fileContent").innerHTML = html;
+            for (i of html) {
+                document.getElementById("fileContent").innerHTML = document.getElementById("fileContent").innerHTML + i + '<br>';
+            }
+
         };
     }
 </script>
