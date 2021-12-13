@@ -1,54 +1,78 @@
-<HTML>
-<meta charset="UTF-8">
-<HEAD> <TITLE>Идущие часы</TITLE>
-    <LINK REL="stylesheet" HREF="pr4.css" TYPE="text/css">
-    <STYLE TYPE="text/css">
-        #clock {font-size:200%; font-weight:bold}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Идущие часы</title>
+    <style type="text/css">
+        #clock {
+            font-size: 200%;
+            font-weight: bold;
+        }
+
         /* Формат цифр часов. */
-    </STYLE>
-    <SCRIPT LANGUAGE="JavaScript">
+    </style>
+    <script language="JavaScript">
+        let kol_znakov = 3
         // Проверка - используется ли MS IE 4 и выше.
         var MS = navigator.appVersion.indexOf("MSIE");
-        window.isIE4 = (MS > 0) &&
-            (parseInt(navigator.appVersion.substring(MS + 5, MS + 6))
-                >= 4);
+        window.isIE4 =
+            MS > 0 && parseInt(navigator.appVersion.substring(MS + 5, MS + 6)) >= 4;
+
         function lead0(val) {
             // Добавляются нули впереди при необходимости.
-            return (val < 10) ? "0" + val.toString() : val;
+            return val < 10 ? "0" + val.toString() : val;
         }
+
         function buildTime() {
             var time = new Date();
+            var microsec = window.performance.now();
             var ampm = "     AM";
             var h = time.getHours();
-            var mls = time.getMilliseconds().toString().substr(0,1);
             // Устанавливается время и индикатор времени суток
             // (до/после полудня - am/pm).
             if (h > 12) {
                 h = h - 12;
-                ampm = "   PM";
+                ampm = "     PM";
             }
-            return lead0(h) + ":" + lead0(time.getMinutes()) + ":" +
-                lead0(time.getSeconds()) + "." + mls +  ampm;
+            return (
+                lead0(h) +
+                ":" +
+                lead0(time.getMinutes()) +
+                ":" +
+                lead0(time.getSeconds()) +
+                    "." +
+                (parseFloat(microsec.toString().substr(2))/(10**(3-4))).toFixed() +
+                ampm
+            );
         }
+
         function tick() {
             // Обновление значения на часах на текущее.
             document.all.clock.innerText = buildTime();
         }
-    </SCRIPT>
-</HEAD>
+
+        function inc() {if (kol_znakov > 0 && kol_znakov < 6) {kol_znakov++}}
+        function dec() {if (kol_znakov > 0 && kol_znakov < 7) {kol_znakov--}}
+    </script>
+</head>
 <!-- Проверка. Работает только в браузерах MS IE 4 и выше -->
 <!-- При выгрузке удаляется таймер -->
-<BODY ONUNLOAD="if (null != window.tmr) clearInterval(window.tmr);"
-      ONLOAD="if (window.isIE4)
-            window.tmr = setInterval('tick()', 99);">
-<H1>Цифровые часы</H1>
-<P>Запрограммировано с использованием HTML.
-    Текущее время (AM/PM - до/после полудня):
-    <SPAN ID="clock">
-            <SCRIPT>
-            // Вывод исходного значения времени.
-            document.write(buildTime());
-            </SCRIPT>
-         </SPAN>.</P>
-</BODY>
-</HTML>
+<body
+        ONUNLOAD="if (null != window.tmr) clearInterval(window.tmr);"
+        onLoad="window.tmr = setInterval('tick()', 1);"
+>
+<left><a href="../index.html">On main page</a></left>
+<h1>Цифровые часы</h1>
+<p>
+    Запрограммировано с использованием HTML. Текущее время (AM/PM - до/после
+    полудня):
+    <span ID="clock">
+        <script>
+          // Вывод исходного значения времени.
+          document.write(buildTime());
+        </script> </span
+    >.
+</p>
+<button onclick="dec()">Меньше</button>
+<button onclick="inc()">Больше</button>
+</body>
+</html>
