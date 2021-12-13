@@ -6,13 +6,29 @@
   <script language="JavaScript1.2" src="../lib/stat_pvn.js"></script>
   <script language="JavaScript1.2">
     function income(ob_frm) {
+      less_than_300 = false
+      for (inp of ob_frm.elements)
+        inp.style = 'background: white'
       let x1 = [];
       for (let i = 0; i < 12; i++) {
           x1[i] = 1.0 * ob_frm.elements[i].value
+          if (x1[i] < 300) {
+            ob_frm.elements[i].style = 'background: red'
+            less_than_300 = true
+          }
       }
+
+      if (less_than_300) {
+        alert("Должно быть больше 300")
+        return
+      }
+
       let inc_mean = Math.round(mean(x1)*1000) / 1000;
       let inc_max = Math.round(max_arr(x1)*1000) / 1000;
       let inc_min = Math.round(min_arr(x1)*1000) / 1000;
+
+      if (inc_mean < 1200) alert("Среднее должно быть больше 1200")
+
       ob_frm.result.value = inc_mean;
       ob_frm.res_max.value = inc_max;
       ob_frm.res_min.value = inc_min;
