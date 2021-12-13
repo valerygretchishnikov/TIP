@@ -1,0 +1,121 @@
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Идущие часы</title>
+    <style type="text/css">
+        #clock {
+            font-size: 200%;
+            font-weight: bold;
+        }
+        /* Формат цифр часов. */
+    </style>
+</head>
+<!-- Проверка. Работает только в браузерах MS IE 4 и выше -->
+<!-- При выгрузке удаляется таймер -->
+<body
+        ONUNLOAD="if (null != window.tmr) clearInterval(window.tmr);"
+        ONLOAD="window.tmr = setInterval('tick()', 1);"
+>
+<h1>Цифровые часы</h1>
+<p>
+    Текущее время (AM/PM - до/после
+    полудня):
+    <p id="clock">
+        <!--<script>
+          // Вывод исходного значения времени.
+          document.write(buildTime());
+        </script>-->
+    </p>
+    <button onclick="fixToSeconds()">Fix to seconds</button>
+    <button onclick="fixToMilliSeconds()">Fix to milliseconds</button>
+    <button onclick="fixToMicroSeconds()">Fix to microseconds</button>
+</p>
+<button>Меньше</button>
+<button>Больше</button>
+</body>
+<script language="JavaScript">
+    let kol_znakov = 6
+    // Проверка - используется ли MS IE 4 и выше.
+    var MS = navigator.appVersion.indexOf("MSIE");
+    window.isIE4 =
+        MS > 0 && parseInt(navigator.appVersion.substring(MS + 5, MS + 6)) >= 4;
+
+    function lead0(val) {
+        // Добавляются нули впереди при необходимости.
+        return val < 10 ? "0" + val.toString() : val;
+    }
+
+
+    function buildTimeFixedToSeconds() {
+        var date = new Date();
+        /*var microsec = window.performance.now();
+        var ampm = "     AM";
+        var h = time.getHours();*/
+        // Устанавливается время и индикатор времени суток
+        // (до/после полудня - am/pm).
+        if (h > 12) {
+            h = h - 12;
+            ampm = "     PM";
+        }
+        return (
+            lead0(h) +
+            ":" +
+            lead0(time.getMinutes()) +
+            ":" +
+            lead0(time.getSeconds()) +
+            "." +
+            microsec.toFixed(1).substr(-5) +
+            microsec.toFixed(10).substr(-2) +
+            ampm
+        );
+    }
+
+    const clock = document.getElementById('clock');
+    let isFixesToSeconds = true;
+    let isFixesToMilliSeconds = false;
+    let isFixesToMicroSeconds = false;
+
+    const fixToSeconds = () => {
+        isFixesToSeconds = true;
+        isFixesToMilliSeconds = false;
+        isFixesToMicroSeconds = false;
+    }
+
+    const fixToMilliSeconds = () => {
+        isFixesToSeconds = false;
+        isFixesToMilliSeconds = true;
+        isFixesToMicroSeconds = false;
+    }
+
+    const fixToMicroSeconds = () => {
+        isFixesToSeconds = false;
+        isFixesToMilliSeconds = false;
+        isFixesToMicroSeconds = true;
+    }
+
+    const timePartFormatter = (time) => {
+        return time > 9 ? time : `0${time}`;
+    }
+
+    setInterval(() => {
+        const date = new Date();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        if(isFixesToSeconds) {
+            clock.textContent = `${timePartFormatter(hours)}:${timePartFormatter(minutes)}:${timePartFormatter(seconds)}`
+        } else if(isFixesToMilliSeconds) {
+            clock.textContent = `${timePartFormatter(hours)}:${timePartFormatter(minutes)}:${timePartFormatter(seconds)}:${date.getMilliseconds()}`
+        } else if (isFixesToMicroSeconds) {
+            const now = window.performance.now();
+            const microSeconds = ((now - Math.floor(now)).toFixed(3)*1000);
+            clock.textContent = `${timePartFormatter(hours)}:${timePartFormatter(minutes)}:${timePartFormatter(seconds)}:${date.getMilliseconds()}:${microSeconds}`
+        }
+    }, 0)
+
+    /*function tick() {
+        // Обновление значения на часах на текущее.
+        document.all.clock.innerText = buildTime();
+    }*/
+</script>
+</html>
